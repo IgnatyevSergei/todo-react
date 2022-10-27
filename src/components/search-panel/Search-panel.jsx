@@ -1,7 +1,27 @@
 import React from "react";
 
-const SearchPanel = () =>{
-    return <input type="text"/>
+class SearchPanel extends React.Component {
+
+    state = {
+        search: ''
+    }
+
+    onChangeSearch = (e) => {
+        this.setState({
+            search: e.target.value
+        })
+        this.props.setSearchText(e.target.value)
+
+    }
+
+    render() {
+        return (
+            <input type="text"
+                   value={this.state.search}
+                   onChange={this.onChangeSearch}/>
+        );
+    }
+
 
 }
 

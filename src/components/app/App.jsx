@@ -7,6 +7,8 @@ import ItemStatusFilter from "../item-status-filter";
 
 
 class App extends React.Component {
+    id = 3
+
     constructor() {
         super();
         this.state = {
@@ -14,9 +16,16 @@ class App extends React.Component {
                 {id: 1, label: 'learn React'},
                 {id: 2, label: 'learn Redux'},
                 {id: 3, label: 'learn JS'},
-            ]
+            ],
+            searchText: ''
         }
     }
+
+    setSearchText = (text)=>{
+        this.setState({
+            searchText: text
+        })
+}
 
     onRemove(id) {
         this.setState((state) => {
@@ -31,22 +40,37 @@ class App extends React.Component {
         })
     }
 
+    onItemAdd = (label) => {
+        this.setState((state) => {
+            const item = {id: ++this.id, label: label}
+            return {
+                items: [...state.items, item]
+            }
+        })
+    }
+
+    onSearchChange =(search)=>{
+        if (search.length === 0) {
+            return this.state.items
+        }
+        return this.state.items.filter(item => {
+            return item.label.toLowerCase().indexOf(search.toLowerCase()) >-1
+        })
+    }
+
     render() {
+
+        const visibleItems = this.onSearchChange(this.state.searchText)
+
         return (<div>
                 <AppHeader/>
-                <SearchPanel/>
+                <SearchPanel setSearchText={this.setSearchText}/>
                 <ItemStatusFilter/>
-                <TodoList items={this.state.items}
+                <TodoList items={visibleItems}
                           onRemove={(id) => this.onRemove(id)}/>
-                <ItemAddForm/>
+                <ItemAddForm onItemAdd={this.onItemAdd}/>
             </div>
         )
-
-
-        // const onRemove = (id) => {
-        //     const newArray = task.filter(task => task.id !== id)
-        //     return newArray
-        // }
 
 
     }
