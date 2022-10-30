@@ -3,28 +3,12 @@ import "./todo-list-item.css"
 
 
 class TodoListItem extends React.Component {
-    state = {
-        done: false,
-        important: false
-    }
 
-    onToggleDone = () => {
-        this.setState((state) => {
-            return {
-                done: !state.done
-
-            }
-        })
-    }
-    marker = () => {
-        this.setState((state) => {
-            return {important: !state.important}
-        })
-    }
 
 
     render() {
-        const {done, important} = this.state
+        console.log(this.props.marker)
+        const {done, important} = this.props.item
 
         let style = 'item'
 
@@ -35,13 +19,13 @@ class TodoListItem extends React.Component {
             style += ' important'
         }
         return (<span>
-        <span className={style} onClick={this.onToggleDone}>
-            {this.props.item}
+        <span className={style} onClick={this.props.onToggleDone}>
+            {this.props.item.label}
         </span>
         <button onClick={this.props.onRemove}>
             Delete
         </button>
-    <button onClick={this.marker}>
+    <button onClick={this.props.marker}>
         Marker
     </button>
         </span>

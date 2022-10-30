@@ -13,12 +13,26 @@ class App extends React.Component {
         super();
         this.state = {
             items: [
-                {id: 1, label: 'learn React'},
-                {id: 2, label: 'learn Redux'},
-                {id: 3, label: 'learn JS'},
+                {id: 1, label: 'learn React', done: false, important: false},
+                {id: 2, label: 'learn Redux', done: false, important: false},
+                {id: 3, label: 'learn JS', done: false, important: false},
             ],
             searchText: ''
         }
+    }
+
+    onToggleDone = () => {
+        this.setState((state) => {
+            return {
+                done: !state.done
+
+            }
+        })
+    }
+    marker = () => {
+        this.setState((state) => {
+            return {important: !state.important}
+        })
     }
 
     setSearchText = (text)=>{
@@ -42,7 +56,7 @@ class App extends React.Component {
 
     onItemAdd = (label) => {
         this.setState((state) => {
-            const item = {id: ++this.id, label: label}
+            const item = {id: ++this.id, label: label, done: false, important: false}
             return {
                 items: [...state.items, item]
             }
@@ -67,7 +81,10 @@ class App extends React.Component {
                 <SearchPanel setSearchText={this.setSearchText}/>
                 <ItemStatusFilter/>
                 <TodoList items={visibleItems}
-                          onRemove={(id) => this.onRemove(id)}/>
+                          onRemove={(id) => this.onRemove(id)}
+                          onToggleDone={()=>this.onToggleDone()}
+                          marker={()=>this.marker()}/>
+
                 <ItemAddForm onItemAdd={this.onItemAdd}/>
             </div>
         )
