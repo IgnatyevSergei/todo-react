@@ -6,11 +6,14 @@ const filterButtons = [
     {name: 'done', label:'Done'}
 ]
 
-const ItemStatusFilter = () =>{
+const ItemStatusFilter = ({onFilter}) =>{
 
     const buttons = filterButtons.map(({name, label}) =>{
         return (
-             <button key={name}>{label}</button>
+             <button key={name}
+             onClick={()=>onFilter(name)}>
+                 {label}
+             </button>
         )
     });
 
