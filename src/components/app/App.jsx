@@ -13,18 +13,38 @@ class App extends React.Component {
         super(props);
         this.state = {
             items: [
+<<<<<<< HEAD
                 {id: 1, label: 'learn React',done: false, important: false},
                 {id: 2, label: 'learn Redux', done: false, important: false},
                 {id: 3, label: 'learn JS',done: false, important: false},
+=======
+                {id: 1, label: 'learn React', done: false, important: false},
+                {id: 2, label: 'learn Redux', done: false, important: false},
+                {id: 3, label: 'learn JS', done: false, important: false},
+>>>>>>> origin/master
             ],
             searchText: '',
             filter: 'all'
         }
     }
 
+<<<<<<< HEAD
     onFilterChange = (filterName) =>{
         this.setState({
             filter: filterName
+=======
+    onToggleDone = () => {
+        this.setState((state) => {
+            return {
+                done: !state.done
+
+            }
+        })
+    }
+    marker = () => {
+        this.setState((state) => {
+            return {important: !state.important}
+>>>>>>> origin/master
         })
     }
 
@@ -126,8 +146,14 @@ class App extends React.Component {
                 <ItemStatusFilter onFilter={this.onFilterChange}/>
                 <TodoList items={visibleItems}
                           onRemove={(id) => this.onRemove(id)}
+<<<<<<< HEAD
                           onToggleDone={this.onToggleDone}
                           onToggleImportant={this.onToggleImportant}/>
+=======
+                          onToggleDone={()=>this.onToggleDone()}
+                          marker={()=>this.marker()}/>
+
+>>>>>>> origin/master
                 <ItemAddForm onItemAdd={this.onItemAdd}/>
             </div>
         )
