@@ -1,6 +1,6 @@
 import React from "react";
 
-import './item-status-filter.css'
+import './Item-status-filter.css'
 
 const filterButtons = [
     {name: 'all', label: 'All'},
@@ -13,7 +13,7 @@ const filterButtons = [
 const ItemStatusFilter = ({onFilter}) => {
 
     const buttons = filterButtons.map(button => {
-        return <button className={'btn btn-primary mystyle'} key={button.name}
+        return <button className={'mystyle'} key={button.name}
                        onClick={() => onFilter(button.name)}
         >
             {button.label}
