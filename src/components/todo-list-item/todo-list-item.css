@@ -1,11 +1,11 @@
-.item {
+.item{
     font-size: 20px;
 }
 
-.done{
+.done {
     text-decoration: line-through;
 }
 
 .important {
-    color: tomato;
+    color: #e35c45;
 }

@@ -1,18 +1,18 @@
-import React from 'react'
+import React, {Component} from "react";
 
-class ItemAddForm extends React.Component{
+class ItemAddForm extends Component {
 
-    state ={
-        label:''
+    state = {
+        label: ''
     }
 
-    onLabelChange = (e) =>{
+    onLabelChange = (e) => {
         this.setState({
             label: e.target.value
         })
     }
 
-    onSubmit =(e)=>{
+    onSubmit = (e) => {
         e.preventDefault()
         const {label} = this.state
         this.props.onItemAdd(label)
@@ -21,16 +21,24 @@ class ItemAddForm extends React.Component{
         })
     }
 
+
     render() {
         return <form
-        onSubmit={this.onSubmit}>
-            <input type="text"
-            value={this.state.label}
-            onChange={this.onLabelChange}/>
-            <button> Добавить задание</button>
-        </form>
+            className={'d-flex md-3'}
+            onSubmit={this.onSubmit}
+        >
+            <input
+                className={'form-control-sm'}
+                type="text"
+                value={this.state.label}
+                onChange={this.onLabelChange}
+            />
+            <button className={'btn btn-secondary my-2 my-sm-0'}>Добавить задание</button>
 
+        </form>
     }
+
+
 }
 
 export default ItemAddForm

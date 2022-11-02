@@ -1,6 +1,6 @@
-import React from "react";
+import React, {Component} from "react";
 
-class SearchPanel extends React.Component {
+class SearchPanel extends Component {
 
     state = {
         search: ''
@@ -10,18 +10,16 @@ class SearchPanel extends React.Component {
         this.setState({
             search: e.target.value
         })
-        this.props.setSearchText(e.target.value)
 
+        this.props.setSearchText(e.target.value)
     }
 
     render() {
-        return (
-            <input type="text"
-                   value={this.state.search}
-                   onChange={this.onChangeSearch}/>
-        );
+        return <input type="text"
+                      value={this.state.search}
+                      onChange={this.onChangeSearch}
+        />
     }
-
 
 }
 
